@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class SkillAttack : MonoBehaviour
+public class Jump : MonoBehaviour
 {
     public float Damage;
     public float Rate;
@@ -12,28 +11,18 @@ public class SkillAttack : MonoBehaviour
     public float CurrentCool;
     public Image image;
 
-    public string trigger;
     Animator animator;
-    public bool followMouse = true;
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
-    public void Fire()
-    {
-        CurrentCool = 0;
-        followMouse = false;
-        if (animator != null)
-        {
-            animator.SetTrigger(trigger);
-        }
-        if(GetComponent<AppleShoot>() != null)
-        {
-            GetComponent<AppleShoot>().Shoot();
-        }
-    }
     private void Update()
     {
+        if (Input.GetKeyDown("r")&& CurrentCool >= DecreasedCool)
+        {
+            animator.SetTrigger("Jump");
+            CurrentCool = 0;
+        }
         DecreasedCool = OriginalCool * (100 - Player.player.CoolTD) / 100f;
         image.fillAmount = CurrentCool / DecreasedCool;
         CurrentCool += Time.deltaTime;

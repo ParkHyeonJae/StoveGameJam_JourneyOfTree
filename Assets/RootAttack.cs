@@ -14,7 +14,10 @@ public class RootAttack : MonoBehaviour
     {
         if (skillAttack.followMouse)
         {
-            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Ground, 0);
+            var v3 = Input.mousePosition;
+            v3.z = 10.0f;
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            transform.position = new Vector3(v3.x, Ground, 0);
         }
     }
 }

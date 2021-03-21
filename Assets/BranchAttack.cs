@@ -17,7 +17,10 @@ public class BranchAttack : MonoBehaviour
     {
         if (skillAttack.followMouse)
         {
-            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var v3 = Input.mousePosition;
+            v3.z = 10.0f;
+            v3 = Camera.main.ScreenToWorldPoint(v3);
+            Vector3 mouse = v3;
             Vector3 To = new Vector3(mouse.x, mouse.y, 0);
             transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(To.y - transform.position.y, To.x - transform.position.x) * Mathf.Rad2Deg);
             Branch.transform.position = (To + transform.position) / 2;

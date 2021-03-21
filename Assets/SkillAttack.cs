@@ -23,7 +23,14 @@ public class SkillAttack : MonoBehaviour
     {
         CurrentCool = 0;
         followMouse = false;
-        animator.SetTrigger(trigger);
+        if (animator != null)
+        {
+            animator.SetTrigger(trigger);
+        }
+        if(GetComponent<AppleShoot>() != null)
+        {
+            GetComponent<AppleShoot>().Shoot();
+        }
     }
     private void Update()
     {

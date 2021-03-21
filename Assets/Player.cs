@@ -74,4 +74,8 @@ public class Player : MonoBehaviour
             StatUI.SetActive(true);
         }
     }
+    private void Update()
+    {
+        HP.value = currentHP;
+    }
 }

@@ -6,6 +6,9 @@ public class SmartKeyMove : MonoBehaviour
 {
     void Update()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
+        var v3 = Input.mousePosition;
+        v3.z = 10.0f;
+        v3 = Camera.main.ScreenToWorldPoint(v3);
+        transform.position = v3 + new Vector3(0, 0, 10);
     }
 }

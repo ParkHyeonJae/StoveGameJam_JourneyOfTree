@@ -12,10 +12,20 @@ namespace Runtime.Camera
         [Tooltip("카메라 회전 속도")]
         [SerializeField] float _rotSpeed = 10;
 
+        public bool _showStartRot = false;
+
         Vector3 _startRot = Vector3.zero;
+
 
         void LateUpdate()
         {
+            if (_showStartRot)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(_startRot), _rotSpeed * Time.deltaTime);
+
+                return;
+            }
+
             Quaternion _lookAt = Quaternion.LookRotation(_lookAtTrans.localPosition - transform.localPosition);
 
 
@@ -27,9 +37,10 @@ namespace Runtime.Camera
         {
             _startRot = transform.eulerAngles;
         }
+
         private void OnDisable()
         {
-            transform.rotation = Quaternion.Euler(_startRot);
+            
         }
     }
 }

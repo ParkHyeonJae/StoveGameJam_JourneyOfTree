@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
     public int Att;
     public int AttI;
 
+    public int SkillPoint;
+    public int level = 1;
+    public int Exp = 0;
+    public int MaxExp = 300;
+
     public static Player player;
     private void Awake()
     {
@@ -30,6 +35,8 @@ public class Player : MonoBehaviour
     }
     public void Statup(string k)
     {
+        if (SkillPoint == 0)
+            return;
         if(k == "HP")
         {
             stats[0]++;
@@ -62,6 +69,8 @@ public class Player : MonoBehaviour
             texts[2].text = stats[2].ToString();
             Att += AttI;
         }
+
+        SkillPoint--;
     }
     public void StatOnOFF()
     {
@@ -74,8 +83,24 @@ public class Player : MonoBehaviour
             StatUI.SetActive(true);
         }
     }
+
+    public void AddExp(int amount)
+    {
+        Exp += amount;
+        MaxExp = level * level;
+
+        if (Exp >= MaxExp)
+        {
+            int remain = Exp - MaxExp;
+
+            Exp = remain;
+            level++;
+            SkillPoint += 1;
+        }
+    }
     private void Update()
     {
         HP.value = currentHP;
+        texts[4].text = $"스킬 포인트 : {SkillPoint.ToString()}";
     }
 }

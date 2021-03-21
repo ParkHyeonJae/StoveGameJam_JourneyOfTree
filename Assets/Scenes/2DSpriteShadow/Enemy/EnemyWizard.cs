@@ -41,6 +41,8 @@ public class EnemyWizard : EnemyBase
                 //enemyAnimators.WizardAnimator.enabled = false;
                 enemyAnimators.WizardAnimator.SetTrigger("die");
                 GetComponent<RandomExplode>().RandomExlpode();
+                Player.player.AddExp(10);
+
                 break;
             case EEnemyAnimState.Hit:
                 enemyAnimators.WizardAnimator.SetTrigger("hurt");

@@ -36,6 +36,7 @@ public class EnemyKnight : EnemyBase
                 enemyAnimators.BladeAnimator.enabled = false;
 
                 GetComponent<RandomExplode>().RandomExlpode();
+                Player.player.AddExp(10);
                 break;
             case EEnemyAnimState.Hit:
                 enemyAnimators.KnightAnimator.Play("KnightHit");

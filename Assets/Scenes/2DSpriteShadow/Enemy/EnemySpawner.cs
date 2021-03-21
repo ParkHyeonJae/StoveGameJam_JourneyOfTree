@@ -27,7 +27,5 @@ public class EnemySpawner : MonoBehaviour
             }
             AccumulateTime = 0f;
         }
-
-
     }
 }

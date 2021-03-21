@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0, z: 0}
-  Speed: 10
+  Speed: 30
   T: 0
 --- !u!65 &8310966397105539957
 BoxCollider:
